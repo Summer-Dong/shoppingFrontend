@@ -29,13 +29,12 @@ body {
   background: url("../images/headerA.jpg") no-repeat center;
   background-size: cover;
 }
-.nav li.active {
-    border-bottom-color: #00AFDE;
+.nav a.active {
+    border-bottom-color: #0A9FE5;
 }
-.nav li {
+.nav a {
     height: 55px;
     border-bottom: 4px solid transparent;
-    /*float: left;*/
 }
 /* .navDiv{
   background-color: #CCE8CF;

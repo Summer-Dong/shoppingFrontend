@@ -8,10 +8,6 @@
  * Controller of the yeomanSourceApp
  */
 angular.module('shoppingFrontend')
-  .controller(['AboutCtrl','whenActive'], function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('AboutCtrl', function () {
+    
   });

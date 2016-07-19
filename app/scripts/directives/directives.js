@@ -13,7 +13,8 @@ angular.module('shoppingFrontend')
             scope: true,
             link: function ( scope, element, attrs ) {
                 scope.$on( '$routeChangeSuccess', function () {
-                    if ( $location.path() == element.attr( 'href' ) ) {
+                    if ( $location.path() == element.attr( 'href' ).substring(1) ) {
+
                         element.addClass( 'active' );
                     }
                     else {
