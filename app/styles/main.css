@@ -73,13 +73,24 @@ body {
 .btn-bottom{
   margin-bottom: 20px;
 }
+.nums {
+    font-size: 10px;
+    position: absolute;
+    left: 180px;
+}
+
+.inputNum {
+    width: 20%;
+}
 /* about page*/
 .about{
   width: 25%;
   height: 250px;
+  margin-left: 450px;
   margin-top: 30px;
-  padding: 20px;
-  background-color: #87C1EB;
+  padding: 50px;
+  border-radius: 140px;
+  background-color: #EB8796;
 }
 .about p{
   color: #080808;

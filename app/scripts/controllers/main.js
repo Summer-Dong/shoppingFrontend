@@ -64,4 +64,7 @@ angular.module('shoppingFrontend')
                 });
 
         };
-});
+    }
+
+
+);

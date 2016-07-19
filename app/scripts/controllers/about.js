@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name yeomanSourceApp.controller:AboutCtrl
- * @description
+ * @Summer shoppingFrontend.controller:AboutCtrl
+ * @2016-7-20
  * # AboutCtrl
  * Controller of the yeomanSourceApp
  */
 angular.module('shoppingFrontend')
-  .controller('AboutCtrl', function () {
+  .controller(['AboutCtrl','whenActive'], function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
