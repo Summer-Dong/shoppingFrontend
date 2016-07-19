@@ -106,6 +106,7 @@ describe('Controller: MainCtrl', function() {
         // then
         expect(mainCtrl.payment.resultItems.length).toBe(3);
         expect(mainCtrl.payment.noSaleResult.sum).toBe(16);
+        expect(mainCtrl.payment.noSaleResult.sale).toBe(0);
         expect(mainCtrl.payment.noSaleResult.noSaleItems[0].name).toBe("苹果");
         expect(mainCtrl.payment.total).toBe(21);
     }));
