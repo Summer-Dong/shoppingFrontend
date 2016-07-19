@@ -20,6 +20,18 @@ describe('Controller: MainCtrl', function() {
             "price": 3.0
         }]);
 
+        $httpBackend.whenGET('http://localhost:8080/rules').respond([{
+            "type": 1,
+            "name": "满一百减十块",
+            "barcodes": [
+                "ITEM00000",
+                "ITEM00001",
+                "ITEM00003",
+                "ITEM00006",
+                "ITEM00008"
+            ]
+        }]);
+
          mainCtrl = $controller('MainCtrl', {
             $scope: scope
         });
@@ -30,11 +42,19 @@ describe('Controller: MainCtrl', function() {
 
         //given
         $httpBackend.flush();
-
+        //then
         expect(mainCtrl.items.length).toBe(1);
-
         expect(mainCtrl.items[0].name).toBe("可口可乐");
         expect(mainCtrl.items[0].barcode).toBe("ITEM00000");
+    }));
+
+    it('should get all rules', inject(function($httpBackend) {
+        //given
+        $httpBackend.flush();
+        //then
+        expect(mainCtrl.rules.length).toBe(1);
+        expect(mainCtrl.rules[0].name).toBe("满一百减十块");
+        expect(mainCtrl.rules[0].barcodes.length).toBe(5);
     }));
 
    
