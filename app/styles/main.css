@@ -29,6 +29,20 @@ body {
   background: url("../images/headerA.jpg") no-repeat center;
   background-size: cover;
 }
+.nav li.active {
+    border-bottom-color: #00AFDE;
+}
+.nav li {
+    height: 55px;
+    border-bottom: 4px solid transparent;
+    /*float: left;*/
+}
+/* .navDiv{
+  background-color: #CCE8CF;
+}
+.nav li:hover{
+  background-color: #3C763D;
+} */
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
   margin-top: 0;
@@ -52,6 +66,12 @@ body {
 }
 .colLeft{
   padding-left: 15px;
+}
+.btn-left{
+  margin-left: 50px;
+}
+.btn-bottom{
+  margin-bottom: 20px;
 }
 /* about page*/
 .about{
