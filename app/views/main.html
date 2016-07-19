@@ -17,7 +17,10 @@
         <fieldset>
             <legend>商店在售</legend>
             <ul class="list-group">
-
+                <li ng-repeat="item in main.items" class="list-group-item">
+                    <span>{{item.name}}</span>
+                    <span class="badge">{{item.price + "元/" + item.unit}}</span>
+                </li>
             </ul>
         </fieldset>
     </form>

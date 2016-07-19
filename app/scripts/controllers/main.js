@@ -2,16 +2,18 @@
 
 /**
  * @ngdoc function
- * @name yeomanSourceApp.controller:MainCtrl
- * @description
+ * @Summer shoppingFrontend.controller:MainCtrl
+ * @2016-7-19
  * # MainCtrl
- * Controller of the yeomanSourceApp
+ * Controller of the shoppingFrontend
  */
 angular.module('shoppingFrontend')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  	.controller('MainCtrl', function(itemService) {
+        var vm = this;
+        
+        itemService.getItems()
+            .then(function(result) {
+                vm.items = result;
+            });
+    
+});
