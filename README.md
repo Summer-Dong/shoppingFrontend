@@ -1,5 +1,4 @@
-男神女神比赛题目：收银机[![Build Status](https://travis-ci.org/Summer-Dong/shoppingFrontend.svg?branch=master)](https://travis-ci.org/Summer-Dong/shoppingFrontend)
-=======================================================================================================================
+﻿男神女神比赛题目：收银机
 
 
 ## 需求描述
