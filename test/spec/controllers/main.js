@@ -32,6 +32,44 @@ describe('Controller: MainCtrl', function() {
             ]
         }]);
 
+        $httpBackend.whenPOST('http://localhost:8080/payment').respond(
+            {
+                "resultItems":[
+                    {
+                        "name":"可口可乐",
+                        "price":3,
+                        "unit":"瓶",
+                        "amount":3
+                    },
+                    {
+                        "name":"乐事薯片",
+                        "price":3.5,
+                        "unit":"袋",
+                        "amount":2
+                    },
+                    {
+                        "name":"苹果",
+                        "price":5,
+                        "unit":"斤",
+                        "amount":1
+                    }
+                ],
+                "noSaleResult":{
+                    "noSaleItems":[
+                        {
+                            "name":"苹果",
+                            "price":5
+                        }
+                    ],
+                    "sum":16,
+                    "sale":0
+                },
+                "sale":0,
+                "total":21
+            }
+        );
+
+
          mainCtrl = $controller('MainCtrl', {
             $scope: scope
         });
@@ -57,7 +95,20 @@ describe('Controller: MainCtrl', function() {
         expect(mainCtrl.rules[0].barcodes.length).toBe(5);
     }));
 
-   
+   it('should get all payments', inject(function($httpBackend) {
+        // given 
+        mainCtrl.itemInCart = ["ITEM00001"];
+
+        // when
+        mainCtrl.printReceipt();
+        $httpBackend.flush();
+        
+        // then
+        expect(mainCtrl.payment.resultItems.length).toBe(3);
+        expect(mainCtrl.payment.noSaleResult.sum).toBe(16);
+        expect(mainCtrl.payment.noSaleResult.noSaleItems[0].name).toBe("苹果");
+        expect(mainCtrl.payment.total).toBe(21);
+    }));
 
 });
 

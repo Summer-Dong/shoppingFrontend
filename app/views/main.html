@@ -54,6 +54,48 @@
             </div>
             <div class="panel-body">
                 <a role="button" class="btn btn-bottom btn-info float-right">结账</a>
+                <div ng-if="main.printClickFlag" class="receiptContent">
+                    <table class="table" style="border: 0 solid">
+                        <caption class="receiptTitle"> 没钱赚商店购物清单</caption>
+                        <thead>
+                            <tr>
+                                <th>名称</th>
+                                <th>数量</th>
+                                <th>单价</th>
+                                <th>小计</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in main.payment.resultItems">
+                                <td>{{item.name}}</td>
+                                <td>{{item.amount}}{{item.unit}}</td>
+                                <td>{{item.price}}(元)</td>
+                                <td>{{item.price * item.amount}}(元)</td>
+                                <td>节省</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table" ng-class="{true: 'hide', false: 'show'}[main.payment.sale < 10]">
+                        <thead>
+                            <tr>
+                                <th>不参与优惠商品：</th>
+                            </tr>
+                            <tr>
+                                <th>名称</th>
+                                <th>价格</th>
+                            </tr>
+                        </thead>
+                        <tr ng-repeat="item in main.payment.noSaleResult.noSaleItems">
+                            <td>{{item.name}}</td>
+                            <td>{{item.price}}(元)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <p ng-if="main.payment.sale >= 10">参与优惠总价：<span>{{main.payment.noSaleResult.sum}}</span>(元)，优惠：<span>{{main.payment.noSaleResult.sale}}</span>(元)</p>
+                    <p>总计：<span>{{main.payment.total}}</span>(元)</p>
+                    <p ng-class="{true: 'hide', false: 'show'}[main.payment.sale < 10]">节省：<span>{{main.payment.sale}}</span>(元)</p>
+                </div>
             </div>   
         </div>
     </div>

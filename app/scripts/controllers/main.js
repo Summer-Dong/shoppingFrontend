@@ -8,10 +8,10 @@
  * Controller of the shoppingFrontend
  */
 angular.module('shoppingFrontend')
-  	.controller('MainCtrl', function(itemService, rulesService) {
+  	.controller('MainCtrl', function(itemService, rulesService, paymentService) {
         var vm = this;
         vm.itemInCart = []; /*itemInCart用于记录购物车中已有商品*/
-        
+
         itemService.getItems()
             .then(function(result) {
                 vm.items = result;
@@ -39,5 +39,29 @@ angular.module('shoppingFrontend')
                 addItem.amount = 1;
                 vm.itemInCart.push(addItem);
             }
+        };
+
+        /*打印小票*/
+        vm.printClickFlag = false;
+        vm.printReceipt = function() {
+            /*获取购物车信息并封装成数组*/
+            var payment = _.chain(vm.itemInCart)
+                .filter(function(item) {
+                    return item.amount;
+                })
+                .map(function(item) {
+                    return item.amount === 1 ? item.barcode : (item.barcode + '-' + item.amount);
+                })
+                .value();
+
+            paymentService.getPayment({ items: payment })
+                .then(function(result) {
+                    vm.payment = result;
+                    vm.printClickFlag = true;
+                })
+                .then(function() {
+                    vm.itemInCart = [];
+                });
+
         };
 });
