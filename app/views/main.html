@@ -77,11 +77,11 @@
                 <td>{{item.amount}}{{item.unit}}</td>
                 <td>{{item.price}}(元)</td>
                 <td>{{item.price * item.amount}}(元)</td>
-                <td>节省</td>
+                <td>{{item.save}}</td>
               </tr>
             </tbody>
           </table>
-          <table class="table" ng-class="{true: 'hide', false: 'show'}[main.payment.sale > 0]">
+          <table class="table" ng-if="main.payment.threeForTwoItems.length > 0">
             <thead>
               <tr>
                 <th>买二赠一商品：</th>
@@ -89,18 +89,18 @@
               <tr>
                 <th>名称</th>
                 <th>数量</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
-            <tr ng-repeat="item in main.payment.noSaleResult.noSaleItems">
+            <tr ng-repeat="item in main.payment.threeForTwoItems">
               <td>{{item.name}}</td>
               <td>{{item.amount}}{{item.unit}}</td>
-              <td></td>
-              <td></td>
             </tr>
           </table>
           
           <p>总计：<span>{{main.payment.total}}</span>(元)</p>
-          <p ng-class="{true: 'show', false: 'hide'}[main.payment.sale > 0]">节省：<span>{{main.payment.sale}}</span>(元)</p>
+          <p ng-class="{true: 'show', false: 'hide'}[main.payment.sale]">节省：<span>{{main.payment.sale}}</span>(元)</p>
         </div>
       </div>   
     </div>
