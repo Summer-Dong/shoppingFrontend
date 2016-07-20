@@ -101,6 +101,9 @@
 .about p{
   font=size: 15px;
 }
+.legendT{
+  padding-top: 40px;
+}
 /* Custom page footer */
 .footer {
   height: 50px;

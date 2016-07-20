@@ -21,9 +21,10 @@ angular.module('shoppingFrontend')
         vm.rules = result;
       });
 
-    /*检查某商品是否参与活动，如参与，有红色标识*/
+    /*检查某商品是否参与"买二赠一"活动，如参与，有红色标识,当参与两种活动时，默认此活动*/
     vm.hasDiscountOne = function(item) {
       return _.chain(vm.rules)
+        .dropRight(vm.rules,1)
         .map(function(item) {
           return item.barcodes;
         })
@@ -33,7 +34,21 @@ angular.module('shoppingFrontend')
         })
         .value();
     };
-        
+      
+    /*检查某商品是否参与"95折优惠"活动，如参与，有绿色标识*/
+     vm.hasDiscountTwo = function(item) {
+         return _.chain(vm.rules)
+             .drop(vm.rules,1)
+             .map(function(item) {
+                 return item.barcodes;
+             })
+             .flatten()
+            .some(function(barcode) {
+                 return item.barcode === barcode;
+             })
+             .value();
+     };
+
     /*根据商品点击事件添加购物车中不存在的商品*/
     vm.addToCart = function(item) {
       var result = _.chain(vm.itemInCart)
