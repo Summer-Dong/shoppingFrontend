@@ -4,8 +4,8 @@
  * @ngdoc function
  * @Summer shoppingFrontend.controller:MainCtrl
  * @2016-7-19
- * # MainCtrl
- * Controller of the shoppingFrontend
+ * # whenActive
+ * directive of the shoppingFrontend
  */
 angular.module('shoppingFrontend')
     .directive( 'whenActive', function ( $location ) {
@@ -14,7 +14,6 @@ angular.module('shoppingFrontend')
             link: function ( scope, element, attrs ) {
                 scope.$on( '$routeChangeSuccess', function () {
                     if ( $location.path() == element.attr( 'href' ).substring(1) ) {
-
                         element.addClass( 'active' );
                     }
                     else {

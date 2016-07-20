@@ -1,101 +1,108 @@
 <div class="row marketing">
 
-    <!-- 使用说明 -->
-    <div class="alert alert-info alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-        </button>
-        <h4>使用说明：</h4>
-        <ul>
-            <li>点击在售列表的商品(特惠商品为红色背景)添加至购物车；</li>
-            <li>点击购物车中的输入框输入购物数量；</li>
-            <li>点击结账按钮，显示小票并清空购物车。</li>
-        </ul>
-    </div>
-    
-    <!-- 商店现售商品 -->
-    <form class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col">
-        <fieldset>
-            <legend>商店在售</legend>
-            <ul class="list-group">
-                <li ng-repeat="item in main.items" class="list-group-item" ng-class="[{'list-group-item-warning': main.hasDiscountOne(item)}, {'list-group-item-success': main.hasDiscountTwo(item)}]" ng-click="main.addToCart(item)">
-                    <span>{{item.name}}</span>
-                    <span class="badge">{{item.price + "元/" + item.unit}}</span>
-                </li>
-            </ul>
-        </fieldset>
-    </form>
+  <!-- 使用说明 -->
+  <div class="alert alert-info alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+    <h4>使用说明：</h4>
+    <ul>
+      <li>点击在售列表的商品(特惠商品为红色背景)添加至购物车；</li>
+      <li>点击购物车中的输入框输入购物数量；</li>
+      <li>点击"清空"按钮清空购物车信息；</li>
+      <li>点击"提交"按钮提交购物车信息；</li>
+      <li>点击"结账"按钮显示小票并清空购物车。</li>
+    </ul>
+  </div>
+  
+  <!-- 商店现售商品 -->
+  <form class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col">
+    <fieldset>
+      <legend class="title">商店在售</legend>
+      <ul class="list-group">
+        <li ng-repeat="item in main.items" class="list-group-item pointer" ng-class="[{'list-group-item-danger': main.hasDiscountOne(item)}, {'list-group-item-success': main.hasDiscountTwo(item)}]" ng-click="main.addToCart(item)">
+          <span>{{item.name}}</span>
+          <span class="badge">{{item.price + "元/" + item.unit}}</span>
+        </li>
+      </ul>
+    </fieldset>
+  </form>
 
-    <!-- 购物车商品 -->
-    <form class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col colLeft">
-        <fieldset>
-            <legend>购物车</legend>
-            <a role="button" class="btn btn-bottom btn-info" ng-if="!main.cartIsEmpty()" ng-click="main.clearCart()">清空</a>
-            <a role="button" class="btn btn-bottom btn-info btn-left" ng-if="!main.cartIsEmpty()" ng-click="main.commits()">提交</a>
-            <pre ng-if="main.cartIsEmpty()">购物车空空如也╮(╯▽╰)╭</pre>
-            <ul class="list-group">
-                <li ng-repeat="item in main.itemInCart" class="list-group-item">
-                    <span>{{item.name}}</span>
-                    <span class="nums">
-                    <span >数量：</span>
-                    <input type="text" class="inputNum" ng-model="item.amount" />
-                    <span>{{item.unit}}</span>
-                    </span>
-                </li>
-            </ul>
-            
-        </fieldset>
-    </form>
+  <!-- 购物车商品 -->
+  <form role="form" class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col colLeft">
+    <fieldset class="field-group">
+      <legend class="title">购物车</legend>
+      <div class="btnBox" ng-if="!main.cartIsEmpty()">
+        <a role="button" type="submit"  class="btn btn-bottom btn-info btn-left" ng-click="main.commits()">提交</a>
+        <a role="button" class="btn btn-bottom btn-danger" ng-click="main.clearCart()">清空</a>
+      </div>
+      <pre ng-if="main.cartIsEmpty()">购物车空空如也╮(╯▽╰)╭</pre>
+      <ul class="list-group">
+        <li ng-repeat="item in main.itemInCart" class="list-group-item">
+          <span>{{item.name}}</span>
+          <span class="nums">
+          <span >数量：</span>
+          <input type="text" class="inputNum" ng-model="item.amount" />
+          <span>{{item.unit}}</span>
+          </span>
+        </li>
+      </ul>
+    </fieldset>
+  </form>
 
-    <!-- 小票 -->
-    <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 col colLeft">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">小票</h3>
-            </div>
-            <div class="panel-body">
-                <a role="button" class="btn btn-bottom btn-info" ng-click="main.printReceipt()">结账</a>
-                <div ng-if="main.printClickFlag" class="receiptContent">
-                    <table class="table" style="border: 0 solid">
-                        <caption class="receiptTitle"> 没钱赚商店购物清单</caption>
-                        <thead>
-                            <tr>
-                                <th>名称</th>
-                                <th>数量</th>
-                                <th>单价</th>
-                                <th>小计</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="item in main.payment.resultItems">
-                                <td>{{item.name}}</td>
-                                <td>{{item.amount}}{{item.unit}}</td>
-                                <td>{{item.price}}(元)</td>
-                                <td>{{item.price * item.amount}}(元)</td>
-                                <td>节省</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table" ng-class="{true: 'hide', false: 'show'}[main.payment.sale < 10]">
-                        <thead>
-                            <tr>
-                                <th>不参与优惠商品：</th>
-                            </tr>
-                            <tr>
-                                <th>名称</th>
-                                <th>价格</th>
-                            </tr>
-                        </thead>
-                        <tr ng-repeat="item in main.payment.noSaleResult.noSaleItems">
-                            <td>{{item.name}}</td>
-                            <td>{{item.price}}(元)</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                    <p ng-if="main.payment.sale >= 10">参与优惠总价：<span>{{main.payment.noSaleResult.sum}}</span>(元)，优惠：<span>{{main.payment.noSaleResult.sale}}</span>(元)</p>
-                    <p>总计：<span>{{main.payment.total}}</span>(元)</p>
-                    <p ng-class="{true: 'hide', false: 'show'}[main.payment.sale < 10]">节省：<span>{{main.payment.sale}}</span>(元)</p>
-                </div>
-            </div>   
+  <!-- 小票 -->
+  <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 col colLeft">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">小票</h3>
+      </div>
+      <div class="panel-body">
+        <div class="btnBox" ng-if="!main.cartIsEmpty()">
+          <a role="button" class="btn btn-bottom btn-success" ng-click="main.printReceipt()">结账</a>
         </div>
+        <pre ng-if="!main.printClickFlag">此处显示购物小票</pre>
+        <div ng-if="main.printClickFlag" class="receiptContent">
+          <table class="table" style="border: 0 solid">
+            <caption class="receiptTitle"> 没钱赚商店购物清单</caption>
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th>数量</th>
+                <th>单价</th>
+                <th>小计</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in main.payment.resultItems">
+                <td>{{item.name}}</td>
+                <td>{{item.amount}}{{item.unit}}</td>
+                <td>{{item.price}}(元)</td>
+                <td>{{item.price * item.amount}}(元)</td>
+                <td>节省</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table" ng-class="{true: 'hide', false: 'show'}[main.payment.sale < 10]">
+            <thead>
+              <tr>
+                <th>不参与优惠商品：</th>
+              </tr>
+              <tr>
+                <th>名称</th>
+                <th>价格</th>
+              </tr>
+            </thead>
+            <tr ng-repeat="item in main.payment.noSaleResult.noSaleItems">
+              <td>{{item.name}}</td>
+              <td>{{item.price}}(元)</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+          <p ng-if="main.payment.sale >= 10">参与优惠总价：<span>{{main.payment.noSaleResult.sum}}</span>(元)，优惠：<span>{{main.payment.noSaleResult.sale}}</span>(元)</p>
+          <p>总计：<span>{{main.payment.total}}</span>(元)</p>
+          <p ng-class="{true: 'hide', false: 'show'}[main.payment.sale < 10]">节省：<span>{{main.payment.sale}}</span>(元)</p>
+        </div>
+      </div>   
     </div>
+  </div>
+</div>
