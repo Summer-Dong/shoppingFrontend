@@ -38,35 +38,28 @@ describe('Controller: MainCtrl', function() {
         "resultItems":[
           {
             "name":"可口可乐",
-            "price":3,
             "unit":"瓶",
-            "amount":3
+            "amount":3,
+            "price":3,
+            "total":9,
+            "save":null
           },
           {
             "name":"乐事薯片",
-            "price":3.5,
             "unit":"袋",
-            "amount":2
-          },
-          {
-            "name":"苹果",
-            "price":5,
-            "unit":"斤",
-            "amount":1
+            "amount":2,
+            "price":3.5,
+            "total":7,
+            "save":"节省2.80(元)"
           }
         ],
-        "noSaleResult":{
-          "noSaleItems":[
-            {
-              "name":"苹果",
-              "price":5
-            }
+        sale:2.80
+        "threeForTwoItems":[
+          "name":"小米耳机"，
+          "unit：“副",
+          "amout":3
           ],
-          "sum":16,
-          "sale":0
-        },
-        "sale":0,
-        "total":21
+        "total":114
       }
     );
 
@@ -105,11 +98,10 @@ describe('Controller: MainCtrl', function() {
     $httpBackend.flush();
     
     // then
-    expect(mainCtrl.payment.resultItems.length).toBe(3);
-    expect(mainCtrl.payment.noSaleResult.sum).toBe(16);
-    expect(mainCtrl.payment.noSaleResult.sale).toBe(0);
-    expect(mainCtrl.payment.noSaleResult.noSaleItems[0].name).toBe("苹果");
-    expect(mainCtrl.payment.total).toBe(21);
+    expect(mainCtrl.payment.resultItems.length).toBe(2);
+    expect(mainCtrl.payment.threeForTwoItems.length).toBe(1);
+    expect(mainCtrl.payment.noSaleResult.sale).toBe(2.80);
+    expect(mainCtrl.payment.total).toBe(114);
   }));
 
 });
