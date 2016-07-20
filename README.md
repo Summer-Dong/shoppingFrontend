@@ -1,6 +1,8 @@
 ﻿男神女神比赛题目：收银机[![Build Status](https://travis-ci.org/Summer-Dong/shoppingFrontend.svg?branch=master)](https://travis-ci.org/Summer-Dong/shoppingFrontend)
 =======================================================================================================================
 
+> 此作业前后端分离
+> 后端地址：https://github.com/Summer-Dong/shoppingBackend
 
 ## 需求描述
 
