@@ -23,7 +23,7 @@ describe('Controller: MainCtrl', function() {
 
     $httpBackend.whenGET('http://localhost:8080/rules').respond([{
       "type": 1,
-      "name": "满一百减十块",
+      "name": "95折",
       "barcodes": [
         "ITEM00000",
         "ITEM00001",
@@ -92,7 +92,7 @@ describe('Controller: MainCtrl', function() {
     $httpBackend.flush();
     //then
     expect(mainCtrl.rules.length).toBe(1);
-    expect(mainCtrl.rules[0].name).toBe("满一百减十块");
+    expect(mainCtrl.rules[0].name).toBe("95折");
     expect(mainCtrl.rules[0].barcodes.length).toBe(5);
   }));
 
