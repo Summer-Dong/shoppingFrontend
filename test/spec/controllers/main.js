@@ -21,17 +21,29 @@ describe('Controller: MainCtrl', function() {
       "price": 3.0
     }]);
 
-    $httpBackend.whenGET('http://localhost:8080/rules').respond([{
-      "type": 1,
-      "name": "95折",
-      "barcodes": [
-        "ITEM00000",
-        "ITEM00001",
-        "ITEM00003",
-        "ITEM00006",
-        "ITEM00008"
-      ]
-    }]);
+    $httpBackend.whenGET('http://localhost:8080/rules').respond(
+      [{
+        "name":"买二赠一",
+        "type":1,
+        "barcodes":
+        [
+          "ITEM00000",
+          "ITEM00001",
+          "ITEM00003",
+          "ITEM00006",
+          "ITEM00008"
+        ]},{
+          "name":"95折",
+          "type":2,
+          "barcodes":
+          [
+            "ITEM00002",
+            "ITEM00004",
+            "ITEM00006",
+            "ITEM00008",
+            "ITEM00009"
+          ]}
+        ]);
 
     $httpBackend.whenPOST('http://localhost:8080/payment').respond(
       {
@@ -108,9 +120,10 @@ describe('Controller: MainCtrl', function() {
     //given
     $httpBackend.flush();
     //then
-    expect(mainCtrl.rules.length).toBe(1);
-    expect(mainCtrl.rules[0].name).toBe("95折");
+    expect(mainCtrl.rules.length).toBe(2);
+    expect(mainCtrl.rules[0].name).toBe("买二赠一");
     expect(mainCtrl.rules[0].barcodes.length).toBe(5);
+    expect(mainCtrl.rules[1].type).toBe(2);
   }));
 
    it('should get all payments', inject(function($httpBackend) {
@@ -125,9 +138,12 @@ describe('Controller: MainCtrl', function() {
     // then
     expect(mainCtrl.payment.resultItems.length).toBe(5);
     expect(mainCtrl.payment.resultItems[1].save).toBe("节省0.75(元)");
+    expect(mainCtrl.payment.resultItems[2].save).toBe(null);
+    expect(mainCtrl.payment.threeForTwoItems.length).toBe(2);
+    expect(mainCtrl.payment.threeForTwoItems[0].amount).toBe(1);
     expect(mainCtrl.payment.total).toBe("38.25");
     expect(mainCtrl.payment.sale).toBe("7.25");
-    expect(mainCtrl.payment.threeForTwoItems.length).toBe(2);
+    
   }));
 
 });
