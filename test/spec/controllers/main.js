@@ -34,40 +34,56 @@ describe('Controller: MainCtrl', function() {
     }]);
 
     $httpBackend.whenPOST('http://localhost:8080/payment').respond(
-      {
-        "resultItems":[
-          {
-            "name":"可口可乐",
-            "price":3,
-            "unit":"瓶",
-            "amount":3
-          },
-          {
-            "name":"乐事薯片",
-            "price":3.5,
-            "unit":"袋",
-            "amount":2
-          },
-          {
-            "name":"苹果",
-            "price":5,
-            "unit":"斤",
-            "amount":1
-          }
-        ],
-        "ThreeForTwoItems":{
-          "noSaleItems":[
-            {
-              "name":"苹果",
-              "price":5
-            }
-          ],
-          "sum":16,
-          "sale":0
-        },
-        "sale":0,
-        "total":21
-      }
+      {"resultItems":
+      [{
+          "name":"凉拌猪耳朵",
+          "unit":"两",
+          "amount":1,
+          "price":5.0,
+          "total":5.0,
+          "save":null
+        },{
+          "name":"苹果",
+          "unit":"斤",
+          "amount":3,
+          "price":5.0,
+          "total":14.25,
+          "save":"节省0.75(元)"
+        },{
+          "name":"趣多多",
+          "unit":"条",
+          "amount":1,
+          "price":6.0,
+          "total":6.0,
+          "save":null
+        },{
+          "name":"可口可乐",
+          "unit":"瓶",
+          "amount":3,
+          "price":3.0,
+          "total":6.0,
+          "save":null
+        },{
+          "name":"乐事薯片",
+          "unit":"袋",
+          "amount":3,
+          "price":3.5,
+          "total":7.0,
+          "save":null
+        }],
+      "threeForTwoItems":
+      [{
+          "name":"可口可乐",
+          "unit":"瓶",
+          "amount":1
+          },{
+          "name":"乐事薯片",
+          "unit":"袋",
+          "amount":1
+        }],
+          "sale":"7.25",
+          "total":"38.25"
+        }
     );
 
 
@@ -101,15 +117,15 @@ describe('Controller: MainCtrl', function() {
     mainCtrl.itemInCart = ["ITEM00001"];
 
     // when
+    mainCtrl.commits();
     mainCtrl.printReceipt();
     $httpBackend.flush();
     
     // then
-    expect(mainCtrl.payment.resultItems.length).toBe(3);
-    expect(mainCtrl.payment.ThreeForTwoItems.sum).toBe(16);
-    expect(mainCtrl.payment.ThreeForTwoItems.sale).toBe(0);
-    expect(mainCtrl.payment.ThreeForTwoItems.noSaleItems[0].name).toBe("苹果");
-    expect(mainCtrl.payment.total).toBe(21);
+    expect(mainCtrl.payment.resultItems.length).toBe(5);
+    expect(mainCtrl.payment.total).toBe(38.25);
+    expect(mainCtrl.payment.sale).toBe(7.25);
+    expect(mainCtrl.payment.ThreeForTwoItems.length).toBe(2);
   }));
 
 });
