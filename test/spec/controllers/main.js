@@ -34,8 +34,9 @@ describe('Controller: MainCtrl', function() {
     }]);
 
     $httpBackend.whenPOST('http://localhost:8080/payment').respond(
-      {"resultItems":
-      [{
+      {
+        "resultItems":
+        [{
           "name":"凉拌猪耳朵",
           "unit":"两",
           "amount":1,
@@ -81,8 +82,8 @@ describe('Controller: MainCtrl', function() {
           "unit":"袋",
           "amount":1
         }],
-          "sale":"7.25",
-          "total":"38.25"
+        "sale":"7.25",
+        "total":"38.25"
         }
     );
 
@@ -114,7 +115,7 @@ describe('Controller: MainCtrl', function() {
 
    it('should get all payments', inject(function($httpBackend) {
     // given 
-    mainCtrl.itemInCart = ["ITEM00001"];
+    mainCtrl.itemInCart = ["ITEM00000-3","ITEM00001-3","ITEM00002-3","ITEM00003","ITEM00005"];
 
     // when
     mainCtrl.commits();
@@ -123,9 +124,9 @@ describe('Controller: MainCtrl', function() {
     
     // then
     expect(mainCtrl.payment.resultItems.length).toBe(5);
-    expect(mainCtrl.payment.total).toBe(38.25);
-    expect(mainCtrl.payment.sale).toBe(7.25);
-    expect(mainCtrl.payment.ThreeForTwoItems.length).toBe(2);
+    expect(mainCtrl.payment.total).toBe("38.25");
+    expect(mainCtrl.payment.sale).toBe("7.25");
+    expect(mainCtrl.payment.threeForTwoItems.length).toBe(2);
   }));
 
 });
