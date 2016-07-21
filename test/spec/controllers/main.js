@@ -124,6 +124,7 @@ describe('Controller: MainCtrl', function() {
     
     // then
     expect(mainCtrl.payment.resultItems.length).toBe(5);
+    expect(mainCtrl.payment.resultItems[1].save).toBe("节省0.75(元)");
     expect(mainCtrl.payment.total).toBe("38.25");
     expect(mainCtrl.payment.sale).toBe("7.25");
     expect(mainCtrl.payment.threeForTwoItems.length).toBe(2);
