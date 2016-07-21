@@ -99,7 +99,6 @@ describe('Controller: MainCtrl', function() {
         }
     );
 
-
      mainCtrl = $controller('MainCtrl', {
       $scope: scope
     });
@@ -107,7 +106,6 @@ describe('Controller: MainCtrl', function() {
   }));
 
   it('should get all items to init item list', inject(function($httpBackend) {
-
     //given
     $httpBackend.flush();
     //then
@@ -131,7 +129,7 @@ describe('Controller: MainCtrl', function() {
     mainCtrl.itemInCart = ["ITEM00000-3","ITEM00001-3","ITEM00002-3","ITEM00003","ITEM00005"];
 
     // when
-    mainCtrl.commits();
+    //mainCtrl.commits();
     mainCtrl.printReceipt();
     $httpBackend.flush();
     
