@@ -8,7 +8,7 @@
  * Controller of the shoppingFrontend
  */
 angular.module('shoppingFrontend')
-  	.controller('MainCtrl', function(itemService, rulesService, paymentService) {
+    .controller('MainCtrl', function(itemService, rulesService, paymentService) {
     var vm = this;
     vm.itemInCart = []; /*itemInCart用于记录购物车中已有商品*/
 
@@ -16,7 +16,7 @@ angular.module('shoppingFrontend')
       .then(function(result) {
         vm.items = result;
       });
-  	rulesService.getRules()
+    rulesService.getRules()
       .then(function(result) {
         vm.rules = result;
       });
