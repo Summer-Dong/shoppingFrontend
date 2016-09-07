@@ -3,8 +3,9 @@ angular.module('shoppingFrontend')
         var self = this;
 
         self.getRules = function() {
-            return $http.get(webConfig.api.host + "rules")
+            return $http.get(webConfig.api.host + "rule")
                 .then(function(response) {
+                	console.log(response);
                     return response.data;
                 })
         };
