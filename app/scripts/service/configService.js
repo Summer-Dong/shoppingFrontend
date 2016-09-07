@@ -1,6 +1,6 @@
 angular.module('shoppingFrontend')
     .constant('webConfig', {
         api: {
-            host: 'http://localhost:8081/'
+            host: 'http://localhost:8080/'
         }
     });

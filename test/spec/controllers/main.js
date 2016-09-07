@@ -12,7 +12,7 @@ describe('Controller: MainCtrl', function() {
   // Initialize the controller and a mock scope
   beforeEach(inject(function($rootScope, $controller, $httpBackend) {
     scope = $rootScope.$new();
-    $httpBackend.whenGET('http://localhost:8081/item').respond([{
+    $httpBackend.whenGET('http://localhost:8080/item').respond([{
       "barcode": "ITEM00000",
       "name": "可口可乐",
       "unit": "瓶",
@@ -21,7 +21,7 @@ describe('Controller: MainCtrl', function() {
       "price": 3.0
     }]);
 
-    $httpBackend.whenGET('http://localhost:8081/rules').respond(
+    $httpBackend.whenGET('http://localhost:8080/rules').respond(
       [{
         "name":"买二赠一",
         "type":1,
@@ -45,7 +45,7 @@ describe('Controller: MainCtrl', function() {
           ]}
         ]);
 
-    $httpBackend.whenPOST('http://localhost:8081/payment').respond(
+    $httpBackend.whenPOST('http://localhost:8080/payment').respond(
       {
         "resultItems":
         [{
