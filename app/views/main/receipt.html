@@ -4,11 +4,11 @@
             <h3 class="panel-title title">小票</h3>
         </div>
         <div class="panel-body">
-            <div class="btnBox" ng-if="!main.cartIsEmpty()">
-                <a role="button" class="btn btn-bottom btn-success" ng-click="main.printReceipt()">结账</a>
+            <div class="btnBox" ng-if="!main.cartServ.cartIsEmpty()">
+                <a role="button" class="btn btn-bottom btn-success" ng-click="main.printReceiptServ.printReceipt()">结账</a>
             </div>
-            <pre ng-if="!main.printClickFlag">此处显示购物小票</pre>
-            <div ng-if="main.printClickFlag" class="receiptContent">
+            <pre ng-if="!main.printReceiptServ.printClickFlag">此处显示购物小票</pre>
+            <div ng-if="main.printReceiptServ.printClickFlag" class="receiptContent">
                 <table class="table" style="border: 0 solid">
                     <caption class="receiptTitle">"没钱赚商店"购物清单</caption>
                     <thead>
@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="item in main.payment.resultItems">
+                        <tr ng-repeat="item in main.printReceiptServ.payment.resultItems">
                             <td>{{item.name}}</td>
                             <td>{{item.amount}}{{item.unit}}</td>
                             <td>{{item.price}}(元)</td>
@@ -29,7 +29,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table" ng-if="main.payment.threeForTwoItems.length >
+                <table class="table" ng-if="main.printReceiptServ.payment.threeForTwoItems.length >
                     0">
                     <thead>
                         <tr>
@@ -42,7 +42,7 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tr ng-repeat="item in main.payment.threeForTwoItems">
+                    <tr ng-repeat="item in main.printReceiptServ.payment.threeForTwoItems">
                         <td>{{item.name}}</td>
                         <td>{{item.amount}}{{item.unit}}</td>
                     </tr>
@@ -53,9 +53,9 @@
                     <span>{{main.payment.total}}</span>
                     (元)
                 </p>
-                <p ng-class="{true: 'show', false: 'hide'}[main.payment.sale]">
+                <p ng-class="{true: 'show', false: 'hide'}[main.printReceiptServ.payment.sale]">
                     节省：
-                    <span>{{main.payment.sale}}</span>
+                    <span>{{main.printReceiptServ.payment.sale}}</span>
                     (元)
                 </p>
             </div>

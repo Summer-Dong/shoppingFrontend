@@ -21,7 +21,7 @@ describe('Controller: MainCtrl', function() {
       "price": 3.0
     }]);
 
-    $httpBackend.whenGET('http://localhost:8081/rule').respond(
+    $httpBackend.whenGET('http://localhost:8081/rules').respond(
       [{
         "name":"买二赠一",
         "type":1,
@@ -130,17 +130,17 @@ describe('Controller: MainCtrl', function() {
 
     // when
     //mainCtrl.commits();
-    mainCtrl.printReceipt();
+    mainCtrl.printReceiptServ.printReceipt();
     $httpBackend.flush();
     
     // then
-    expect(mainCtrl.payment.resultItems.length).toBe(5);
-    expect(mainCtrl.payment.resultItems[1].save).toBe("节省0.75(元)");
-    expect(mainCtrl.payment.resultItems[2].save).toBe(null);
-    expect(mainCtrl.payment.threeForTwoItems.length).toBe(2);
-    expect(mainCtrl.payment.threeForTwoItems[0].amount).toBe(1);
-    expect(mainCtrl.payment.total).toBe("38.25");
-    expect(mainCtrl.payment.sale).toBe("7.25");
+    expect(mainCtrl.printReceiptServ.payment.resultItems.length).toBe(5);
+    expect(mainCtrl.printReceiptServ.payment.resultItems[1].save).toBe("节省0.75(元)");
+    expect(mainCtrl.printReceiptServ.payment.resultItems[2].save).toBe(null);
+    expect(mainCtrl.printReceiptServ.payment.threeForTwoItems.length).toBe(2);
+    expect(mainCtrl.printReceiptServ.payment.threeForTwoItems[0].amount).toBe(1);
+    expect(mainCtrl.printReceiptServ.payment.total).toBe("38.25");
+    expect(mainCtrl.printReceiptServ.payment.sale).toBe("7.25");
     
   }));
 

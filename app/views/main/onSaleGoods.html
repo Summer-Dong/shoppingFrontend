@@ -2,7 +2,7 @@
   <fieldset>
     <legend class="title">商店在售</legend>
     <ul class="list-group">
-      <li ng-repeat="item in main.items" class="list-group-item pointer" ng-class="[{'list-group-item-danger': main.hasDiscountOne(item)}, {'list-group-item-success': main.hasDiscountTwo(item)}]" ng-click="main.addToCart(item)">
+      <li ng-repeat="item in main.items" class="list-group-item pointer" ng-class="[{'list-group-item-danger': main.hasDiscountOne(item)}, {'list-group-item-success': main.hasDiscountTwo(item)}]" ng-click="main.cartServ.addToCart(item)">
         <span>{{item.name}}</span>
         <span class="badge">{{item.price + "元/" + item.unit}}</span>
       </li>
