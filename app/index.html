@@ -21,17 +21,11 @@
     <![endif]-->
 
     <!-- page content -->
-    <header class="header">
-      <div ng-include="'views/nav/header.html'"></div>
-    </header>
-
+    <header></header>
     <div class="container">
       <div ng-view=""></div>
     </div>
-
-    <footer class="footer">
-      <div ng-include="'views/nav/footer.html'"></div>
-    </footer>
+    <footer></footer>
   
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -50,13 +44,14 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="http://cdn.bootcss.com/jquery-mockjax/1.6.2/jquery.mockjax.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/service/ItemService.js"></script>
     <script src="scripts/service/RulesService.js"></script>
     <script src="scripts/service/paymentService.js"></script>
     <script src="scripts/service/configService.js"></script>
+    <script src="scripts/directives/header.js"></script>
+    <script src="scripts/directives/footer.js"></script>
     <script src="scripts/directives/whenActive.js"></script>
     <!-- endbuild -->
 </body>
