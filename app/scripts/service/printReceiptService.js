@@ -1,20 +1,29 @@
 angular.module('shoppingFrontend')
-    .service('printReceiptServ', function(cartServ, paymentService) {
-        var self = this;
-        self.cartServ = cartServ;
+    .service('printReceiptServ', function(paymentService, cartServ) {
+        var my = this;
+        my.printClickFlag = false;
+
+        my.printReceipt = function() {
+            paymentService.calcuPayment();
+            my.printClickFlag = true;
+            cartServ.itemInCart = [];
+        };
+
 
         /*打印小票*/
-        self.printClickFlag = false;
-        self.printReceipt = function() {
-            paymentService.getPayment({
-                    items: self.cartServ.res
-                })
-                .then(function(result) {
-                    self.payment = result;
-                    self.printClickFlag = true;
-                })
-                .then(function() {
-                    self.cartServ.itemInCart = [];
-                });
-        };
+        // my.printClickFlag = false;
+        // my.printReceipt = function() {
+        //     paymentService.getPayment({
+        //             items: my.cartServ.res
+        //         })
+        //         .then(function(result) {
+        //             my.payment = result;
+        //             my.printClickFlag = true;
+        //         })
+        //         .then(function() {
+        //             my.cartServ.itemInCart = [];
+        //         });
+        // };
+
+
     });

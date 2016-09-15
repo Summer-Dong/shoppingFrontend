@@ -1,6 +1,7 @@
 angular.module('shoppingFrontend')
-    .service('cartServ', function() {
+    .service('cartServ', function(hasDiscountServ) {
         var self = this;
+        self.hasDiscountServ=hasDiscountServ;
         /*itemInCart用于记录购物车中已有商品*/
         self.itemInCart = []; 
 
@@ -27,7 +28,7 @@ angular.module('shoppingFrontend')
         /*检查购物车是否为空，如果为空，将显示空购物车提示*/
         self.cartIsEmpty = function() {
             return !self.itemInCart.length;
-        }
+        }  
 
         /*清空购物车*/
         self.clearCart = function() {
@@ -44,6 +45,40 @@ angular.module('shoppingFrontend')
                     return item.amount === 1 ? item.barcode : (item.barcode + '-' + item.amount);
                 })
                 .value();
+
+            // //获取购物车信息，对信息进行操作
+            // // console.log(self.res);
+
+            // // 将购物车信息每一项分离为barcode和unit两项，
+            // self.result = [];
+            // self.res.forEach(function(item, index, array){
+            //     if(item.indexOf("-")>0){
+            //         var pos = item.indexOf("-");
+            //         self.result.push({barcode:item.slice(0,pos),unit:item.slice(pos+1,item.length)})
+            //     }else{
+            //         self.result.push({barcode:item.toString(),unit:1});
+            //     }
+            // });
+            // console.log(self.res);
+
+            // //将购物归类
+            // self.onsaleOne = [];
+            // self.onsaleTwo = [];
+            // self.normalGoods = [];
+            // self.result.forEach(function(item, index, array){
+            //     if(self.hasDiscountServ.hasDiscountOne(item)==true)
+            //         self.onsaleOne.push(item);
+            //     else if(self.hasDiscountServ.hasDiscountTwo(item)==true)
+            //         self.onsaleTwo.push(item);
+            //     else
+            //         self.normalGoods.push(item);
+            // });
+
+            // console.log(self.onsaleOne);
+            // console.log(self.onsaleTwo);
+            // console.log(self.normalGoods);
+
+           
         };
 
     });
