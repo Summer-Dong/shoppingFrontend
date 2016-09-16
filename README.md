@@ -1,4 +1,5 @@
-﻿ThoughtWorks“最佳编程体验之旅”成都站比赛题目：收银机[![Build Status](https://travis-ci.org/Summer-Dong/shoppingFrontend.svg?branch=master)](https://travis-ci.org/Summer-Dong/shoppingFrontend)
+﻿ThoughtWorks“最佳编程体验之旅”成都站
+﻿比赛题目：收银机[![Build Status](https://travis-ci.org/Summer-Dong/shoppingFrontend.svg?branch=master)](https://travis-ci.org/Summer-Dong/shoppingFrontend)
 =======================================================================================================================
 
 > 此作业前后端分离
