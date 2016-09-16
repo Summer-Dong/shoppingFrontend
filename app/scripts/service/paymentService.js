@@ -38,7 +38,7 @@ angular.module('shoppingFrontend')
             //将购物归类,并完善每一物品的信息
             angular.forEach(my.payment.resultItems, function(item, index) {
                 var that = item;
-
+                // 将购物车中物品与现售物品一一比对，完善购物车物品信息
                 angular.forEach(my.itemService, function(item, index) {
                     if (item.barcode == that.barcode) {
                         that.name = item.name;
@@ -51,7 +51,6 @@ angular.module('shoppingFrontend')
                     }
                 });
 
-
                 //满足买二送一
                 if (my.hasDiscountServ.hasDiscountOne(item) == true && item.amount > 2) {
                     my.payment.threeForTwoItems.push(item);
@@ -59,7 +58,6 @@ angular.module('shoppingFrontend')
                 //满足95折
                 else if (my.hasDiscountServ.hasDiscountTwo(item) == true) {
                     item.save = (item.total * 0.05).toFixed(2);
-
                     my.payment.total -= (+item.save);
                     my.payment.sale += (+item.save);
                 }
@@ -69,7 +67,6 @@ angular.module('shoppingFrontend')
             angular.forEach(my.payment.threeForTwoItems, function(item, index) {
                 item.saleAmount = Math.floor((item.amount / 3));
                 my.payment.total -= (item.saleAmount * item.price);
-
                 my.payment.sale += (item.saleAmount * item.price);
             });
 
