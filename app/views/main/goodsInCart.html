@@ -1,11 +1,11 @@
-<form role="form" class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col colLeft">
+<form role="form" ng-submit="main.cartServ.commits()" class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col colLeft">
     <fieldset class="field-group">
         <legend class="title">购物车</legend>
-        <div class="btnBox" ng-if="!main.cartServ.cartIsEmpty()">
-            <a role="button" type="submit"  class="btn btn-bottom btn-info btn-left" ng-click="main.cartServ.commits()">提交</a>
+        <div class="btnBox" ng-hide="main.cartServ.cartIsEmpty()">
+            <input role="button" type="submit" class="btn btn-bottom btn-info btn-left" value="提交"/>
             <a role="button" class="btn btn-bottom btn-danger" ng-click="main.cartServ.clearCart()">清空</a>
         </div>
-        <pre ng-if="main.cartServ.cartIsEmpty()">购物车空空如也╮(╯▽╰)╭</pre>
+        <pre ng-show="main.cartServ.cartIsEmpty()">购物车空空如也╮(╯▽╰)╭</pre>
         <ul class="list-group">
             <li ng-repeat="item in main.cartServ.itemInCart" class="list-group-item">
                 <span>{{item.name}}</span>
