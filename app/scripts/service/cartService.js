@@ -1,5 +1,5 @@
 angular.module('shoppingFrontend')
-    .service('cartServ', function(hasDiscountServ) {
+    .service('cartServ', ['hasDiscountServ', function(hasDiscountServ) {
         var self = this;
         self.hasDiscountServ=hasDiscountServ;
         /*itemInCart用于记录购物车中已有商品*/
@@ -81,4 +81,4 @@ angular.module('shoppingFrontend')
            
         };
 
-    });
+    }]);

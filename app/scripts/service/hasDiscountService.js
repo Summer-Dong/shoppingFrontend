@@ -1,5 +1,5 @@
 angular.module('shoppingFrontend')
-    .service('hasDiscountServ', function(rulesService) {
+    .service('hasDiscountServ', ['rulesService', function(rulesService) {
         var self = this;
         rulesService.getRules()
             .then(function(result) {
@@ -30,4 +30,4 @@ angular.module('shoppingFrontend')
                 })
                 .value();
         };
-    });
+    }]);

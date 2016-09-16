@@ -1,5 +1,5 @@
 angular.module('shoppingFrontend')
-    .service('printReceiptServ', function(paymentService, cartServ) {
+    .service('printReceiptServ', ['paymentService', 'cartServ', function(paymentService, cartServ) {
         var my = this;
         my.printClickFlag = false;
 
@@ -26,4 +26,4 @@ angular.module('shoppingFrontend')
         // };
 
 
-    });
+    }]);

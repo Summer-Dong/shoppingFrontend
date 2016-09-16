@@ -1,7 +1,7 @@
 angular.module('shoppingFrontend')
     // .service('paymentService', ['$http', 'webConfig', function($http, webConfig) {
-    .service('paymentService', function(cartServ, itemService, hasDiscountServ) {
-    
+    .service('paymentService', ['cartServ', 'itemService', 'hasDiscountServ', function(cartServ, itemService, hasDiscountServ) {
+
         var my = this;
 
         itemService.getItems()
@@ -20,7 +20,7 @@ angular.module('shoppingFrontend')
             my.payment.resultItems = [];
 
             // 将购物车信息每一项分离为barcode和amount两项，
-            my.cartServ.res.forEach(function(item, index, array) {
+            angular.forEach(my.cartServ.res, function(item, index) {
                 if (item.indexOf("-") > 0) {
                     var pos = item.indexOf("-");
                     my.payment.resultItems.push({
@@ -36,10 +36,10 @@ angular.module('shoppingFrontend')
             });
 
             //将购物归类,并完善每一物品的信息
-            my.payment.resultItems.forEach(function(item, index, array) {
+            angular.forEach(my.payment.resultItems, function(item, index) {
                 var that = item;
 
-                my.itemService.forEach(function(item, index, array) {
+                angular.forEach(my.itemService, function(item, index) {
                     if (item.barcode == that.barcode) {
                         that.name = item.name;
                         that.price = item.price;
@@ -50,6 +50,7 @@ angular.module('shoppingFrontend')
                         my.payment.total += that.total;
                     }
                 });
+
 
                 //满足买二送一
                 if (my.hasDiscountServ.hasDiscountOne(item) == true && item.amount > 2) {
@@ -65,10 +66,10 @@ angular.module('shoppingFrontend')
             });
 
             //计算满二送一的物品的优惠数量及相应的优惠
-            my.payment.threeForTwoItems.forEach(function(item, index, array) {
+            angular.forEach(my.payment.threeForTwoItems, function(item, index) {
                 item.saleAmount = Math.floor((item.amount / 3));
                 my.payment.total -= +(item.saleAmount * item.price);
-                
+
                 my.payment.sale += +(item.saleAmount * item.price);
             });
 
@@ -83,5 +84,4 @@ angular.module('shoppingFrontend')
         //             return res.data;
         //         })
         // };
-    });
-
+    }]);

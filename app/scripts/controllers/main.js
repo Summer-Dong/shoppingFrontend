@@ -8,7 +8,7 @@
  * Controller of the shoppingFrontend
  */
 angular.module('shoppingFrontend')
-    .controller('MainCtrl', function(itemService, rulesService, hasDiscountServ, cartServ, printReceiptServ, paymentService) {
+    .controller('MainCtrl', ['itemService', 'rulesService', 'hasDiscountServ', 'cartServ', 'printReceiptServ', 'paymentService', function(itemService, rulesService, hasDiscountServ, cartServ, printReceiptServ, paymentService) {
         var vm = this;
         
         itemService.getItems()
@@ -32,4 +32,4 @@ angular.module('shoppingFrontend')
         /*打印小票*/
         vm.printReceiptServ = printReceiptServ;
         vm.paymentService = paymentService;
-    });
+    }]);
