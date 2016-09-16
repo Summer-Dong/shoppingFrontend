@@ -50,7 +50,7 @@
                     <span>{{main.paymentService.payment.total}}</span>
                     (元)
                 </p>
-                <p ng-class="{true: 'show', false: 'hide'}[main.paymentService.payment.sale]">
+                <p ng-class="{true: 'show', false: 'hide'}[main.paymentService.payment.sale>0]">
                     节省：
                     <span>{{main.paymentService.payment.sale}}</span>
                     (元)
