@@ -44,7 +44,7 @@ angular.module('shoppingFrontend')
                         that.name = item.name;
                         that.price = item.price;
                         that.unit = item.unit;
-                        that.total = +(that.price) * (that.amount);
+                        that.total = (that.price) * (that.amount);
                         that.save = null;
 
                         my.payment.total += that.total;
@@ -68,14 +68,11 @@ angular.module('shoppingFrontend')
             //计算满二送一的物品的优惠数量及相应的优惠
             angular.forEach(my.payment.threeForTwoItems, function(item, index) {
                 item.saleAmount = Math.floor((item.amount / 3));
-                my.payment.total -= +(item.saleAmount * item.price);
+                my.payment.total -= (item.saleAmount * item.price);
 
-                my.payment.sale += +(item.saleAmount * item.price);
+                my.payment.sale += (item.saleAmount * item.price);
             });
 
-            //将结果取两位小数
-            my.payment.total = my.payment.total.toFixed(2);
-            my.payment.sale = my.payment.sale.toFixed(2);
         };
 
         // my.getPayment = function(paymentRequest) {
