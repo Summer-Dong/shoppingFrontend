@@ -31,9 +31,7 @@
                 </table>
                 <table class="table" ng-if="main.paymentService.payment.threeForTwoItems.length > 0">
                     <thead>
-                        <tr>
-                            <th>买二赠一商品：</th>
-                        </tr>
+                        <tr><th>买二赠一商品：</th></tr>
                         <tr>
                             <th class="col-lg-6 col-md-6 col-sm-4 col-xs-12">名称</th>
                             <th class="col-lg-6 col-md-6 col-sm-4 col-xs-12">数量</th>
@@ -50,7 +48,8 @@
                     <span>{{main.paymentService.payment.total | number:2}}</span>
                     (元)
                 </p>
-                <p ng-class="{true: 'show', false: 'hide'}[main.paymentService.payment.sale>0]">
+                <!-- <p ng-class="{true: 'if', false: 'hide'}[main.paymentService.payment.sale>0]"> -->
+                <p ng-if="main.paymentService.payment.sale>0">
                     节省：
                     <span>{{main.paymentService.payment.sale | number:2}}</span>
                     (元)

@@ -24,7 +24,6 @@ angular.module('shoppingFrontend')
             }
         };
 
-
         /*检查购物车是否为空，如果为空，将显示空购物车提示*/
         self.cartIsEmpty = function() {
             return !self.itemInCart.length;

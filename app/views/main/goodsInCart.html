@@ -10,8 +10,9 @@
             <li ng-repeat="item in main.cartServ.itemInCart" class="list-group-item">
                 <span>{{item.name}}</span>
                 <span class="nums">
-                    <span >数量：</span>
+                    <a class="J_minus pointer" ng-click="item.amount = item.amount-1">-</a>
                     <input type="text" class="inputNum" ng-model="item.amount" />
+                    <a class="J_add pointer" ng-click="item.amount = item.amount+1">+</a>
                     <span>{{item.unit}}</span>
                 </span>
             </li>
