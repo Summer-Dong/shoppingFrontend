@@ -48,7 +48,6 @@
                     <span>{{main.paymentService.payment.total | number:2}}</span>
                     (元)
                 </p>
-                <!-- <p ng-class="{true: 'if', false: 'hide'}[main.paymentService.payment.sale>0]"> -->
                 <p ng-if="main.paymentService.payment.sale>0">
                     节省：
                     <span>{{main.paymentService.payment.sale | number:2}}</span>
