@@ -10,9 +10,9 @@
             <li ng-repeat="item in main.cartServ.itemInCart" class="list-group-item">
                 <span>{{item.name}}</span>
                 <span class="nums">
-                    <a class="minus pointer" ng-click="item.amount=(item.amount>0 ? item.amount-1 : 0)">-</a>
+                    <span class="minus pointer btn" ng-click="item.amount=(item.amount>0 ? item.amount-1 : 0)">-</span>
                     <input type="text" class="inputNum" ng-model="item.amount" onKeyup="value=this.value.replace(/\D+/g,'')"/> 
-                    <a class="add pointer" ng-click="item.amount = item.amount+1">+</a>
+                    <span class="add pointer btn" ng-click="item.amount = item.amount+1">+</span>
                     <span>{{item.unit}}</span>
                 </span>
             </li>
